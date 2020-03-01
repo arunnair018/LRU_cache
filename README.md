@@ -1,4 +1,4 @@
-# LRU_cache
+# LRU Cache
 Python implementation of Least Recently Used Cache (LRU Cache) using dict and linked list.
 * Least Recently Used Cache.
 * Evicts least recently used entry.
