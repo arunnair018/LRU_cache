@@ -1,6 +1,5 @@
-import time
-import random
-
+import logging
+logging.basicConfig(level=logging.INFO)
 
 # node structure
 class Node:
@@ -11,7 +10,7 @@ class Node:
         self.prev = None
 
 # Linked list class
-class linked_list:
+class lru_cache:
     def __init__(self,func):
         self.head = None    # initialize head of list        
         self.tail = None    # initialize tail of list
@@ -41,8 +40,8 @@ class linked_list:
         node.next,node.prev = None,None     # make previous and next None
 
     def __call__(self,*args):
-        #print('cache_keys : ',self.cache.keys())   # uncomment to print cache
-        #self._print(self.head)                     # uncomment to print linked_list
+        logging.info('cache_keys : %s', list(self.cache.keys()))   # uncomment to print cache
+        self._print(self.head)                     # uncomment to print linked_list
         if args in self.cache:                      # if value in cache then update cache
             n=args[0]
             print(f'Computing...{n}x{n}')
@@ -62,18 +61,9 @@ class linked_list:
             return result                           # return cacuated value
 
     # function to print linked_list
-    def _print(self,pointer):                     
+    def _print(self,pointer):
+        l=''                     
         while pointer is not None:
-            print(pointer.key,'-->',end=' ')
+            l+= str(pointer.key) + '-->' 
             pointer = pointer.next
-
-@ll
-def _square(n):
-    print(f'Computing...{n}x{n}')
-    time.sleep(1)
-    return n*n
-    
-# random input generator
-for i in range(20):
-    print(_square(random.randrange(1,7)))
-    print('---------------------------------')
+        logging.info('linkedlist : %s',l)
